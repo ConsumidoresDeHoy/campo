@@ -11,7 +11,6 @@ URL = st.secrets.LimeSurvey.url
 #================================================================================
 st.set_page_config(
     #page_title="Realtime Portal", [LimeSurvey]
-    #url="http://encuestas.perceptionssurveys.com/index.php/admin/remotecontrol"
     layout="wide"
 )
 
@@ -90,19 +89,16 @@ if st.button("Submit"):
 
 
 #===========================================================================
-    
-    #st.stop()
+
     atributos = ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10']
     data[atributos] = data[atributos].astype(str).astype(int)
     data['Puntos'] = data[atributos].sum(axis=1)
     data['PROYECTO'] = data['PROYECTO'].str.rstrip()
     data['PROYECTO'] = data['PROYECTO'].str.upper()
     proyectos = data['PROYECTO'].unique()
-    #st.write(data)
-    #st.stop()
+
     for proyecto in proyectos:
         datatemp = data[data['PROYECTO'] == proyecto]
         plot_puntos_por_proyecto(datatemp, proyecto)
-        #st.write(datatemp)
 
 #===========================================================================
